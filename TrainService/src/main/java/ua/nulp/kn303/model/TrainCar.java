@@ -35,6 +35,9 @@ public class TrainCar {
         COUPE, PLATSCART, GENERAL, RESTAURANT, BAGGAGE, BUSINESS_CLASS
     }
 
+    @Column(nullable = false)
+    private String price;
+
     @Column(name = "passengers_capacity",nullable = false)
     private Integer passengersCapacity;
 
