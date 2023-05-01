@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalTime;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -23,10 +25,10 @@ public class TrainSchedule {
     private String departureStation;
 
     @Column(name = "arrival_time",nullable = false)
-    private String arrivalTime;
+    private LocalTime arrivalTime;
 
     @Column(name = "departure_time",nullable = false)
-    private String departureTime;
+    private LocalTime departureTime;
 
     @Column(name = "day_of_week",nullable = false)
     private String dayOfWeek;
