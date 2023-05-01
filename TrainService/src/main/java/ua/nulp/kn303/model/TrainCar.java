@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.hibernate.annotations.Check;
 import org.hibernate.annotations.ColumnDefault;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Getter
@@ -36,21 +37,13 @@ public class TrainCar {
     }
 
     @Column(nullable = false)
-    private String price;
+    private BigDecimal price;
 
     @Column(name = "passengers_capacity",nullable = false)
     private Integer passengersCapacity;
 
-    @Column(name = "occupied_passengers_spaces",nullable = false)
-    @Check(constraints = "occupied_passengers_spaces <= passengers_capacity")
-    private Integer occupiedPassengersSpaces;
-
     @Column(name = "baggage_capacity",nullable = false)
     private Integer baggageCapacity;
-
-    @Column(name = "occupied_luggage_spaces",nullable = false)
-    @Check(constraints = "occupied_luggage_spaces <= baggage_capacity")
-    private Integer occupiedLuggageSpaces;
 
     @Column(name = "created_at", nullable = false, columnDefinition = "TIMESTAMP DEFAULT now()")
     private LocalDateTime createdAt = LocalDateTime.now();
