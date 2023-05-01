@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/ConfigService/ConfigService.iml" filepath="$PROJECT_DIR$/ConfigService/ConfigService.iml" />
       <module fileurl="file://$PROJECT_DIR$/DiscoveryService/DiscoveryService.iml" filepath="$PROJECT_DIR$/DiscoveryService/DiscoveryService.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Railway Ticketing System.iml" filepath="$PROJECT_DIR$/.idea/Railway Ticketing System.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TicketService/TicketService.iml" filepath="$PROJECT_DIR$/TicketService/TicketService.iml" />
       <module fileurl="file://$PROJECT_DIR$/TrainService/TrainService.iml" filepath="$PROJECT_DIR$/TrainService/TrainService.iml" />
       <module fileurl="file://$PROJECT_DIR$/UserService/UserService.iml" filepath="$PROJECT_DIR$/UserService/UserService.iml" />
     </modules>

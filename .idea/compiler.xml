@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="TrainService" />
         <module name="ConfigService" />
+        <module name="TicketService" />
         <module name="DiscoveryService" />
         <module name="UserService" />
       </profile>
@@ -16,6 +17,7 @@
     <bytecodeTargetLevel>
       <module name="ConfigService" target="17" />
       <module name="DiscoveryService" target="17" />
+      <module name="TicketService" target="17" />
       <module name="TrainService" target="17" />
       <module name="UserService" target="17" />
     </bytecodeTargetLevel>
@@ -24,6 +26,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="ConfigService" options="-parameters" />
       <module name="DiscoveryService" options="-parameters" />
+      <module name="TicketService" options="-parameters" />
       <module name="TrainService" options="-parameters" />
       <module name="UserService" options="-parameters" />
     </option>
