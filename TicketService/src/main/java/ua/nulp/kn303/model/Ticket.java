@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @Getter
 @Setter
 @EqualsAndHashCode(of = "ticketNumber")
@@ -21,7 +23,13 @@ public class Ticket {
     private String ticketNumber;
 
     @Column(nullable = false)
+    private LocalDate date;
+
+    @Column(nullable = false)
     private Long trainId;
+
+    @Column(nullable = false)
+    private Long trainCarId;
 
     @Column(nullable = false)
     private Long userId;

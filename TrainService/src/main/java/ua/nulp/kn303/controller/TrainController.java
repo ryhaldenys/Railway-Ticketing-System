@@ -1,10 +1,7 @@
 package ua.nulp.kn303.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ua.nulp.kn303.dto.TrainDto;
 import ua.nulp.kn303.service.TrainService;
 
@@ -22,4 +19,10 @@ public class TrainController {
 
         return trainService.getAllTrainCars(arrStation, depStation);
     }
+
+    @GetMapping("/{id}")
+    public TrainDto getTrainById(@PathVariable Long id){
+        return trainService.getTrainById(id);
+    }
+
 }

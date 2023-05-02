@@ -20,4 +20,11 @@ public class TrainCarController {
     public List<TrainCarDto> getTrainCarsByTrainId(@PathVariable Long id){
         return trainCarService.getAllTrainCarsByTrainId(id);
     }
+
+    @GetMapping("/{car_id}")
+    public TrainCarDto getTrainCarByTrainIdAndId(@PathVariable Long id,@PathVariable("car_id")Long carId){
+        return trainCarService.getTrainCarByTrainIdAndId(id,carId);
+    }
+
+
 }

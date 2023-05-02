@@ -18,4 +18,7 @@ public class TrainCarService {
         return trainCarRepository.findAllTrainCarsByTrainId(trainId);
     }
 
+    public TrainCarDto getTrainCarByTrainIdAndId(Long trainId,Long carId) {
+        return trainCarRepository.findTrainCarByTrainIdAndId(trainId,carId).orElseThrow();
+    }
 }

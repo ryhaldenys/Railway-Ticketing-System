@@ -31,4 +31,8 @@ public class TrainService {
 
         return trains;
     }
+
+    public TrainDto getTrainById(Long id) {
+        return trainRepository.findTrainById(id).orElseThrow(()->new TrainNotFoundException("Cannot find train by id: "+id));
+    }
 }
