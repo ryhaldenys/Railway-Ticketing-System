@@ -8,6 +8,8 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 
+import static ua.nulp.kn303.model.Ticket.Status.*;
+
 @Getter
 @Setter
 @EqualsAndHashCode(of = "ticketNumber")
@@ -31,6 +33,13 @@ public class Ticket {
     @Column(nullable = false)
     private Long trainCarId;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Status status = UNPAID;
+
+    public enum Status{
+        UNPAID,PAID
+    }
     @Column(nullable = false)
     private Long userId;
 

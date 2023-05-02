@@ -15,6 +15,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
+import static ua.nulp.kn303.model.Ticket.Status.*;
+
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -85,7 +87,7 @@ public class TicketService {
     }
 
     private TicketDto createInstanceOfTicketDto(Ticket ticket, UserDto user, TrainDto train, TrainCarDto trainCar) {
-        return new TicketDto(ticket.getTicketNumber(), user.username(), ticket.getDate(),
+        return new TicketDto(ticket.getId(), ticket.getTicketNumber(), ticket.getStatus(), user.username(), ticket.getDate(),
                 train.getTrainName(), train.getTrainType(), train.getArrivalStation(),
                 train.getDepartureStation(),train.getArrivalTime(),train.getDepartureTime(),
                 trainCar.trainCarNumber(), trainCar.type(), trainCar.price());
@@ -99,6 +101,13 @@ public class TicketService {
     }
     public TicketDto mapToTicketDto(Ticket ticket){
         return createTicketDto(ticket);
+    }
+
+
+    @Transactional
+    public void setPaidStatus(Long id) {
+        var ticket = getTicket(id);
+        ticket.setStatus(PAID);
     }
 }
 

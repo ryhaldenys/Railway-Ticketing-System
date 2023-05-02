@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.Check;
-import org.hibernate.annotations.ColumnDefault;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -33,7 +31,7 @@ public class TrainCar {
     private TrainCarType type;
 
     public enum TrainCarType{
-        COUPE, PLATSCART, GENERAL, RESTAURANT, BAGGAGE, BUSINESS_CLASS
+        COUPE, PLATSCART, GENERAL, BUSINESS_CLASS
     }
 
     @Column(nullable = false)
