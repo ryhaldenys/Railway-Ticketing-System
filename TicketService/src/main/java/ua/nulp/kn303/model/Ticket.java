@@ -8,7 +8,8 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 
-import static ua.nulp.kn303.model.Ticket.Status.*;
+import static ua.nulp.kn303.model.Ticket.PaymentStatus.*;
+import static ua.nulp.kn303.model.Ticket.TicketStatus.*;
 
 @Getter
 @Setter
@@ -35,11 +36,20 @@ public class Ticket {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Status status = UNPAID;
+    private PaymentStatus paymentStatus = UNPAID;
 
-    public enum Status{
+    public enum PaymentStatus {
         UNPAID,PAID
     }
+
+    @Column(nullable = false, name = "ticket_status")
+    @Enumerated(EnumType.STRING)
+    private TicketStatus ticketStatus = ACTIVE;
+
+    public enum TicketStatus {
+        ACTIVE,EXPIRED,CANCELED
+    }
+
     @Column(nullable = false)
     private Long userId;
 

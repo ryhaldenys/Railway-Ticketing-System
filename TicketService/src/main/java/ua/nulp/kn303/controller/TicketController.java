@@ -3,6 +3,7 @@ package ua.nulp.kn303.controller;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.web.bind.annotation.*;
+import ua.nulp.kn303.dto.RequestSetStatusDto;
 import ua.nulp.kn303.dto.RequestTicketDto;
 import ua.nulp.kn303.dto.TicketDto;
 
@@ -24,11 +25,15 @@ public class TicketController {
         ticketService.createTicket(ticket);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{id}/paid-status")
     public void setPaidStatus(@PathVariable Long id){
         ticketService.setPaidStatus(id);
     }
 
+    @PutMapping("/{id}/ticket-status")
+    public void updateTicketStatus(@PathVariable Long id, @RequestBody RequestSetStatusDto ticketStatus){
+        ticketService.updateTicketStatus(id,ticketStatus);
+    }
 
     @GetMapping("/{id}")
     public TicketDto getTicketById(@PathVariable Long id){
@@ -37,6 +42,10 @@ public class TicketController {
 
     @GetMapping
     public List<TicketDto> getAllUserTicketsByUserId(@RequestParam("user_id")Long userId){
-        return ticketService.getAllUserTicketsByUserId(userId);
+        return ticketService.getAllTickets(userId);
     }
+
+
+
+
 }

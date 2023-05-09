@@ -25,6 +25,4 @@ public class TrainCarController {
     public TrainCarDto getTrainCarByTrainIdAndId(@PathVariable Long id,@PathVariable("car_id")Long carId){
         return trainCarService.getTrainCarByTrainIdAndId(id,carId);
     }
-
-
 }

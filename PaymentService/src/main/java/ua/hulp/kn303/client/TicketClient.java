@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 @FeignClient(name = "tickets")
 public interface TicketClient {
-    @PutMapping("/tickets/{id}")
+    @PutMapping("/tickets/{id}/paid-status")
     void setPaidStatus(@PathVariable Long id);
 }

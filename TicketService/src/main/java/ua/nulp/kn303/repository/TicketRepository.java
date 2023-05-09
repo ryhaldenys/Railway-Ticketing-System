@@ -6,6 +6,5 @@ import ua.nulp.kn303.model.Ticket;
 import java.util.List;
 
 public interface TicketRepository extends JpaRepository<Ticket,Long> {
-
     List<Ticket> findAllByUserId(Long userId);
 }

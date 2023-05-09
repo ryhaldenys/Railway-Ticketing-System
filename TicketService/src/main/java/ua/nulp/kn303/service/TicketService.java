@@ -1,6 +1,7 @@
 package ua.nulp.kn303.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.nulp.kn303.client.TrainClient;
@@ -15,7 +16,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
-import static ua.nulp.kn303.model.Ticket.Status.*;
+import static ua.nulp.kn303.model.Ticket.*;
+import static ua.nulp.kn303.model.Ticket.PaymentStatus.*;
+import static ua.nulp.kn303.model.Ticket.TicketStatus.*;
 
 @Service
 @Transactional(readOnly = true)
@@ -82,23 +85,20 @@ public class TicketService {
         return createInstanceOfTicketDto(ticket,user,train,trainCar);
     }
 
-    private Ticket getTicket(Long id) {
-        return ticketRepository.findById(id).orElseThrow();
-    }
-
     private TicketDto createInstanceOfTicketDto(Ticket ticket, UserDto user, TrainDto train, TrainCarDto trainCar) {
-        return new TicketDto(ticket.getId(), ticket.getTicketNumber(), ticket.getStatus(), user.username(), ticket.getDate(),
+        return new TicketDto(ticket.getId(), ticket.getTicketNumber(), ticket.getPaymentStatus(), ticket.getTicketStatus(), user.username(), ticket.getDate(),
                 train.getTrainName(), train.getTrainType(), train.getArrivalStation(),
                 train.getDepartureStation(),train.getArrivalTime(),train.getDepartureTime(),
                 trainCar.trainCarNumber(), trainCar.type(), trainCar.price());
     }
 
-    public List<TicketDto> getAllUserTicketsByUserId(Long userId) {
+    public List<TicketDto> getAllTickets(Long userId) {
         var tickets = ticketRepository.findAllByUserId(userId);
          return tickets.stream()
                 .map(this::mapToTicketDto)
                 .toList();
     }
+
     public TicketDto mapToTicketDto(Ticket ticket){
         return createTicketDto(ticket);
     }
@@ -107,8 +107,29 @@ public class TicketService {
     @Transactional
     public void setPaidStatus(Long id) {
         var ticket = getTicket(id);
-        ticket.setStatus(PAID);
+        ticket.setPaymentStatus(PAID);
     }
+
+    @Transactional
+    public void updateTicketStatus(Long id,RequestSetStatusDto ticketStatus) {
+        var ticket = getTicket(id);
+        ticket.setTicketStatus(TicketStatus.valueOf(ticketStatus.ticketStatus()));
+    }
+    private Ticket getTicket(Long id) {
+        return ticketRepository.findById(id).orElseThrow();
+    }
+
+
+    @Scheduled(cron = "0 0 0 * * *")
+    public void expireTickets(){
+        var tickets = getAllTickets();
+        tickets.forEach(t -> t.setTicketStatus(EXPIRED));
+    }
+
+    private List<Ticket> getAllTickets(){
+        return ticketRepository.findAll();
+    }
+
 }
 
 
