@@ -1,0 +1,11 @@
+server:
+  port: 8888
+spring:
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: file:\Users\ASUS\OneDrive\Документи\КН\6 семестр\ТРСПО\Лабораторні\lab3-4\Railway Ticketing System\ConfigService\src\main\resources\config
+
